@@ -1,0 +1,22 @@
+{
+  "name": "rishdawglearnstocode",
+  "version": "1.0.0",
+  "description": "learning code stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishdawg/RISHDAWGLEARNSTOCODE.git"
+  },
+  "author": "Rishi Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishdawg/RISHDAWGLEARNSTOCODE/issues"
+  },
+  "homepage": "https://github.com/rishdawg/RISHDAWGLEARNSTOCODE#readme",
+  "dependencies": {
+    "lodash.curry": "^4.1.1"
+  }
+}
