@@ -1,6 +1,6 @@
 let rishdawg;
 
-if( rishdawg === undefined) console.log('yo this not defined');
+if( typeof rishdawg === 'undefined') console.log('yo this not defined');
 
 /*
   Describes when a variable or something is not been assigned a value
