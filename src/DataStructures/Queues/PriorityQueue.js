@@ -1,39 +1,44 @@
 class PriorityQueue {
-  constructor () {
+  constructor() {
     this.collection = [];
   }
-  print(){
+
+  print() {
     console.log(this.collection);
   }
-  enque (element) {
-    if( this.isEmpty()){
+
+  enque(element) {
+    if (this.isEmpty()) {
       this.collection.push(element);
-    }
-    else{
+    } else {
       let added = false;
-      for( let i = 0; i< this.collection.length; i++){
-        if(element[1] < this.collection[i][1]){
-          this.collection.splice(i,0,element);
+      for (let i = 0; i < this.collection.length; i++) {
+        if (element[1] < this.collection[i][1]) {
+          this.collection.splice(i, 0, element);
           added = true;
           break;
         }
       }
-        if(!added){
-          this.collection.push(element);
-        }
+      if (!added) {
+        this.collection.push(element);
+      }
     }
   }
-  deque () {
+
+  deque() {
     return this.collection.shift();
   }
-  front () {
+
+  front() {
     return this.collection[0];
   }
-  size () {
+
+  size() {
     return this.collection.length;
   }
+
   isEmpty() {
-    return this.collection.length === 0
+    return this.collection.length === 0;
   }
 }
 

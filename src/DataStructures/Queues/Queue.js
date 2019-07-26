@@ -1,24 +1,30 @@
 class Queue {
-  constructor () {
+  constructor() {
     this.collection = [];
   }
-  print(){
+
+  print() {
     console.log(this.collection);
   }
-  enque (element) {
+
+  enque(element) {
     return this.collection.push(element);
   }
-  deque () {
+
+  deque() {
     return this.collection.shift();
   }
-  front () {
+
+  front() {
     return this.collection[0];
   }
-  size () {
+
+  size() {
     return this.collection.length;
   }
+
   isEmpty() {
-    return this.collection.length === 0
+    return this.collection.length === 0;
   }
 }
 

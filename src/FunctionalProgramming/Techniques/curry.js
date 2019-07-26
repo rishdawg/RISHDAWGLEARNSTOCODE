@@ -4,14 +4,11 @@
 */
 const curry = require('lodash.curry');
 
-const joinSentence = (sentencePart1, sentencePart2, sentencePart3) => {
-    return sentencePart1 + sentencePart2 + sentencePart3;
-}
+const joinSentence = (sentencePart1, sentencePart2, sentencePart3) => sentencePart1 + sentencePart2 + sentencePart3;
 
 const curriedSentence = curry(joinSentence);
 
 const I = curriedSentence('I');
 
 console.log(I(''));
-console.log(I(' like', ' Celtics'))
-
+console.log(I(' like', ' Celtics'));

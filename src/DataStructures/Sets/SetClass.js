@@ -1,59 +1,68 @@
 class RishdawgSet {
-  constructor () {
+  constructor() {
     this.collection = [];
   }
-  has (element) {
+
+  has(element) {
     return this.collection.indexOf(element) !== -1;
   }
-  add (element) {
-    if (!this.has(element)){
+
+  add(element) {
+    if (!this.has(element)) {
       this.collection.push(element);
     }
   }
-  values () {
+
+  values() {
     return this.collection;
   }
-  remove (element) {
-    if (this.has(element)){
+
+  remove(element) {
+    if (this.has(element)) {
       const index = this.collection.indexOf(element);
-      this.collection.splice(index,1);
+      this.collection.splice(index, 1);
     }
   }
-  size () {
+
+  size() {
     return this.collection.length;
   }
-  union (anothaSet) {
+
+  union(anothaSet) {
     const unionSet = new Set();
     const currentSetValues = this.values();
     const anothaSetValues = anothaSet.values();
-    currentSetValues.forEach((element) => unionSet.add(element));
-    anothaSetValues.forEach((element) => unionSet.add(element));
+    currentSetValues.forEach(element => unionSet.add(element));
+    anothaSetValues.forEach(element => unionSet.add(element));
     return unionSet;
   }
-  intersection (anothaSet) {
+
+  intersection(anothaSet) {
     const intersectionSet = new Set();
     const currentSetValues = this.values();
-    currentSetValues.forEach((element) => intersectionSet.add(element));
+    currentSetValues.forEach(element => intersectionSet.add(element));
     intersectionSet.forEach((element) => {
-      if(!anothaSet.has(element)){
+      if (!anothaSet.has(element)) {
         intersectionSet.delete(element);
       }
     });
     return intersectionSet;
   }
-  difference (anothaSet) {
+
+  difference(anothaSet) {
     const differenceSet = new Set();
     const currentSetValues = this.values();
     currentSetValues.forEach((element) => {
-      if(!anothaSet.has(element)){
-        differenceSet.add(element)
+      if (!anothaSet.has(element)) {
+        differenceSet.add(element);
       }
     });
     return differenceSet;
   }
-  subset (anothaSet) {
+
+  subset(anothaSet) {
     const currentSetValues = this.values();
-    return currentSetValues.every((value) => anothaSet.has(value));
+    return currentSetValues.every(value => anothaSet.has(value));
   }
 }
 
@@ -72,7 +81,7 @@ console.log(cards.size());
 const secondDeck = new RishdawgSet();
 secondDeck.add('Ace of Spades');
 secondDeck.add('King of Diamonds');
-secondDeck.add('2 of Hearts')
+secondDeck.add('2 of Hearts');
 
 console.log('union', cards.union(secondDeck)); // it will not have king of diamonds twice
 console.log('intersection', cards.intersection(secondDeck)); // should only return king of diamonds because those are what is similar between the two sets

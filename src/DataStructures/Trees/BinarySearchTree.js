@@ -15,24 +15,22 @@ class BST {
   constructor() {
     this.root = null;
   }
+
   add(data) {
     const node = this.root;
     if (node === null) { // if nothing at the top of the tree then it at the top of the tree
       this.root = new Node(data);
-      return;
     } else {
-      const searchTree = function(node) { // recursive function here
+      const searchTree = function (node) { // recursive function here
         if (data < node.data) { // checking if it supposed to go left
-          if (node.left === null) {  // something exist more to the left?
+          if (node.left === null) { // something exist more to the left?
             node.left = new Node(data); // nothing exist to the left then add the new node and make it the pointer
-            return;
           } else if (node.left !== null) { // make the decision from here if you need to go left or right again
             return searchTree(node.left);
           }
         } else if (data > node.data) { // checking if it going right
           if (node.right === null) { // something exist more to the right?
             node.right = new Node(data); // nothing exist to the right then add the new node and make it the pointer
-            return;
           } else if (node.right !== null) {
             return searchTree(node.right); // make the decision from here if you need to go left or right again
           }
@@ -43,6 +41,7 @@ class BST {
       return searchTree(node);
     }
   }
+
   findMin() { // go all the way to the left
     let current = this.root;
     while (current.left !== null) {
@@ -50,6 +49,7 @@ class BST {
     }
     return current.data;
   }
+
   findMax() { // go all the way to the left
     let current = this.root;
     while (current.right !== null) {
@@ -57,6 +57,7 @@ class BST {
     }
     return current.data;
   }
+
   find(data) {
     let current = this.root;
     while (current.data !== data) {
@@ -71,6 +72,7 @@ class BST {
     }
     return current;
   }
+
   isPresent(data) {
     let current = this.root;
     while (current) {
@@ -85,8 +87,9 @@ class BST {
     }
     return false;
   }
+
   remove(data) {
-    const removeNode = function(node, data) { // recursive again
+    const removeNode = function (node, data) { // recursive again
       if (node == null) {
         return null;
       }
@@ -104,115 +107,113 @@ class BST {
           return node.left;
         }
         // node has two children
-        var tempNode = node.right;
+        let tempNode = node.right;
         while (tempNode.left !== null) {
           tempNode = tempNode.left;
         }
         node.data = tempNode.data;
         node.right = removeNode(node.right, tempNode.data);
         return node;
-      } else if (data < node.data) {
+      } if (data < node.data) {
         node.left = removeNode(node.left, data);
         return node;
-      } else {
-        node.right = removeNode(node.right, data);
-        return node;
       }
-    }
+      node.right = removeNode(node.right, data);
+      return node;
+    };
     this.root = removeNode(this.root, data);
   }
+
   isBalanced() {
-    return (this.findMinHeight() >= this.findMaxHeight() - 1)
+    return (this.findMinHeight() >= this.findMaxHeight() - 1);
   }
+
   findMinHeight(node = this.root) {
-      if (node == null) {
-          return -1;
-      };
-      let left = this.findMinHeight(node.left);
-      let right = this.findMinHeight(node.right);
-      if (left < right) {
-          return left + 1;
-      } else {
-          return right + 1;
-      };
+    if (node == null) {
+      return -1;
+    }
+    const left = this.findMinHeight(node.left);
+    const right = this.findMinHeight(node.right);
+    if (left < right) {
+      return left + 1;
+    }
+    return right + 1;
   }
+
   findMaxHeight(node = this.root) {
-      if (node == null) {
-          return -1;
-      };
-      let left = this.findMaxHeight(node.left);
-      let right = this.findMaxHeight(node.right);
-      if (left > right) {
-          return left + 1;
-      } else {
-          return right + 1;
-      };
+    if (node == null) {
+      return -1;
+    }
+    const left = this.findMaxHeight(node.left);
+    const right = this.findMaxHeight(node.right);
+    if (left > right) {
+      return left + 1;
+    }
+    return right + 1;
   }
+
   inOrder() {
     if (this.root == null) {
       return null;
-    } else {
-      var result = new Array();
-      function traverseInOrder(node) {
-        node.left && traverseInOrder(node.left);
-        result.push(node.data);
-        node.right && traverseInOrder(node.right);
-      }
-      traverseInOrder(this.root);
-      return result;
-    };
+    }
+    const result = new Array();
+    function traverseInOrder(node) {
+      node.left && traverseInOrder(node.left);
+      result.push(node.data);
+      node.right && traverseInOrder(node.right);
+    }
+    traverseInOrder(this.root);
+    return result;
   }
+
   preOrder() {
     if (this.root == null) {
       return null;
-    } else {
-      var result = new Array();
-      function traversePreOrder(node) {
-        result.push(node.data);
-        node.left && traversePreOrder(node.left);
-        node.right && traversePreOrder(node.right);
-      };
-      traversePreOrder(this.root);
-      return result;
-    };
+    }
+    const result = new Array();
+    function traversePreOrder(node) {
+      result.push(node.data);
+      node.left && traversePreOrder(node.left);
+      node.right && traversePreOrder(node.right);
+    }
+    traversePreOrder(this.root);
+    return result;
   }
+
   postOrder() {
     if (this.root == null) {
       return null;
-    } else {
-      var result = new Array();
-      function traversePostOrder(node) {
-        node.left && traversePostOrder(node.left);
-        node.right && traversePostOrder(node.right);
-        result.push(node.data);
-      };
-      traversePostOrder(this.root);
-      return result;
     }
+    const result = new Array();
+    function traversePostOrder(node) {
+      node.left && traversePostOrder(node.left);
+      node.right && traversePostOrder(node.right);
+      result.push(node.data);
+    }
+    traversePostOrder(this.root);
+    return result;
   }
 
   levelOrder() {
-      let result = [];
-      let Q = [];
-      if (this.root != null) {
-          Q.push(this.root);
-          while(Q.length > 0) {
-              let node = Q.shift();
-              result.push(node.data);
-              if (node.left != null) {
-                  Q.push(node.left);
-              };
-              if (node.right != null) {
-                  Q.push(node.right);
-              };
-          };
-          return result;
-      } else {
-          return null;
-      };
-  };
+    const result = [];
+    const Q = [];
+    if (this.root != null) {
+      Q.push(this.root);
+      while (Q.length > 0) {
+        const node = Q.shift();
+        result.push(node.data);
+        if (node.left != null) {
+          Q.push(node.left);
+        }
+        if (node.right != null) {
+          Q.push(node.right);
+        }
+      }
+      return result;
+    }
+    return null;
+  }
 }
-
 
 
 const bst = new BST();
@@ -234,8 +235,8 @@ bst.add(10);
 console.log(bst.findMinHeight());
 console.log(bst.findMaxHeight());
 console.log(bst.isBalanced());
-console.log('inOrder: ' + bst.inOrder());
-console.log('preOrder: ' + bst.preOrder());
-console.log('postOrder: ' + bst.postOrder());
+console.log(`inOrder: ${bst.inOrder()}`);
+console.log(`preOrder: ${bst.preOrder()}`);
+console.log(`postOrder: ${bst.postOrder()}`);
 
-console.log('levelOrder: ' + bst.levelOrder());
+console.log(`levelOrder: ${bst.levelOrder()}`);
