@@ -7,7 +7,7 @@
  Imperative: It shows how you are going about solving it. More of a step by step
 
  ## 4 rules of functional programming
-    - Pure Functions: try to make a function predictable, if a certain input is going in ther is only one output that will be       returned, no dependecies on anything besides the input
+    - Pure Functions: try to make a function predictable, if a certain input is going in ther is only one output that will be returned, no dependecies on anything besides the input
     - Referential Transparency: check if the function can be replaced with its value without changing the program's behavior
     - Immutable Data: Data is not changed. Rather you clone it make a copy of it somewhere
     - First Class Entities: support passing functions as arguments to other functions.
